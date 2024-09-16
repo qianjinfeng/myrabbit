@@ -1,0 +1,68 @@
+
+
+{{ctx.PatientName[0]?.Alphabetic?.split('^')[0] ?: ''}}
+
+{{doc['PatientName'][0].Alphabetic}}
+{{ctx._source.PatientName[0].Alphabetic ?? 'N/A'}}
+
+
+/////////////OK//////////////
+set
+{{{_source.PatientName}}}   
+
+script
+ctx.PatientName = ctx.PatientName[0].Alphabetic
+if
+ctx.PatientName?.size() > 0 && ctx.PatientName[0]?.Alphabetic != null
+
+[
+  {
+    "_index": "index",
+    "_id": "id",
+    "_source": {
+      "AcquisitionTime":"010505.000000",
+      "AcquisitionDate":"20100806",
+      "foo": "bar",
+      "PatientName": [
+        {
+          "Alphabetic": "NAME^NONE"
+        }
+      ],
+      "ContributingEquipmentSequence": [
+        {
+          "ContributionDateTime": "20210325104830.142+0000"
+        }
+      ]
+    }
+  }
+]
+/////////////////////////////
+def dateString = ctx.AcquisitionDate;
+def timeString = ctx.AcquisitionTime;
+def datetimeString = dateString + "T" + timeString + "Z"; // ISO 8601 格式
+def parsedDate = Date.parse("yyyyMMdd'T'HHmmss.SSS'Z'", datetimeString);
+ctx.set("@timestamp", parsedDate.toInstant().toEpochMilli());
+///////////////////////
+
+if (ctx._source.PatientName && ctx._source.PatientName.length > 0) {
+    ctx._source.name = ctx._source.PatientName[0].Alphabetic;
+}
+else {
+    ctx._source.name = "N/A";
+}
+
+  "processors": [
+    {
+        "script": {
+          "source": " if (ctx._source.PatientName && ctx._source.PatientName.length > 0) {   def value = ctx._source.PatientName[0].Alphabetic;  if (value != null) {          ctx._source.newName = value.toString();    } else {       ctx._source.newName = \"\";       }    } else {           ctx._source.newName = \"\";     }   ",
+          "lang": "painless"
+        }
+      }
+  ]
+
+  {
+    "script": {
+      "description": "Generated the instanceId field for SLO rollup data",
+      "source": "         / Ito\"][\"groupings\"]);            // Convert to a list and sort           List sortedValues = new ArrayList(values);           Collections.sort(sortedValues);            // Create comma delimited string           for(String instanceValue: sortedValues) {             instanceId.append(instanceValue);             instanceId.append(\",\");           }              // Assign the slo.instanceId           ctx[\"slo\"][\"instanceId\"] = instanceId.length() > 0 ? instanceId.substring(0, instanceId.length() - 1) : \"*\";         }        "
+    }
+  }

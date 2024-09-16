@@ -1,0 +1,119 @@
+{
+  "mappings": {
+    "properties": {
+      "AcquisitionDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "AcquisitionNumber": {
+        "type": "long"
+      },
+      "AcquisitionTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "ContentDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "ContentTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "ContributingEquipmentSequence": {
+        "properties": {
+          "ContributionDateTime": {
+            "type": "date",
+            "format": "yyyyMMddHHmmss.SSS"
+          },
+          "SoftwareVersions": {
+            "type": "text"
+          },
+          "StationName": {
+            "type": "text"
+          }
+        }
+      },
+      "ImageType": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "InstanceCreationDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "InstanceCreationTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "InstanceNumber": {
+        "type": "long"
+      },
+      "Modality": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PatientID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PatientName": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PerformedProcedureStepStartDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "PerformedProcedureStepStartTime": {
+        "type": "date",
+        "format": "                                                                                                                                                                                                                 "
+      },
+      "SeriesDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "SeriesInstanceUID": {
+        "type": "text"
+      },  
+      "SeriesNumber": {
+        "type": "long"
+      },
+      "SeriesTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"                                                                                                                                                                                                                                                                                                                               
+      },
+      "StudyDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "StudyInstanceUID": {
+        "type": "text"
+      },
+      "StudyTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "consumer",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "consume rabbitmq and send to elastic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "qian jinfeng",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.15.0",
+    "amqplib": "^0.10.4",
+    "loglevelnext": "^6.0.0",
+    "pako": "^2.1.0"
+  }
+}

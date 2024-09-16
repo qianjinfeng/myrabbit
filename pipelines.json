@@ -1,0 +1,63 @@
+[
+    {
+      "pipeline": {
+        "name": "name-replacement",
+        "ignore_missing_pipeline": true,
+        "ignore_failure": true
+      }
+    },
+    {
+      "pipeline": {
+        "name": "remove-vrmap-field",
+        "ignore_missing_pipeline": true,
+        "ignore_failure": true
+      }
+    },
+    {
+      "pipeline": {
+        "name": "create-timestamp",
+        "ignore_missing_pipeline": true,
+        "ignore_failure": true
+      }
+    }
+  ]
+
+
+[
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.remove('_vrMap')",
+        "ignore_failure": true
+      }
+    },
+
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.PatientName = ctx.PatientName[0].Alphabetic",
+        "if": "ctx.PatientName?.size() > 0 && ctx.PatientName[0]?.Alphabetic != null",
+        "ignore_failure": true
+      }
+    }
+]
+    PUT _ingest/pipeline/create-timestamp
+    {
+      "processors": [
+        {
+          "set": {
+            "field": "@timestamp",
+            "value": "{{_source.AcquisitionDate}}{{_source.AcquisitionTime}}"
+          }
+        },
+        {
+          "date": {
+            "field": "@timestamp",
+            "formats": [
+              "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+            ]
+          }
+        }
+      ]
+    }
+ 

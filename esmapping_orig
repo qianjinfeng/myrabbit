@@ -1,0 +1,691 @@
+{
+  "mappings": {
+    "properties": {
+      "00190010": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "00191023": {
+        "type": "long"
+      },
+      "00191024": {
+        "type": "long"
+      },
+      "00191027": {
+        "type": "long"
+      },
+      "00430010": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "00431027": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "00450010": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "00451001": {
+        "type": "long"
+      },
+      "00451002": {
+        "type": "float"
+      },
+      "AcquisitionDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "AcquisitionNumber": {
+        "type": "long"
+      },
+      "AcquisitionTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "BitsAllocated": {
+        "type": "long"
+      },
+      "BitsStored": {
+        "type": "long"
+      },
+      "Columns": {
+        "type": "long"
+      },
+      "ContentDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ContentTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ContributingEquipmentSequence": {
+        "properties": {
+          "ContributionDateTime": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ContributionDescription": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "Manufacturer": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ManufacturerModelName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "PurposeOfReferenceCodeSequence": {
+            "properties": {
+              "CodeMeaning": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "CodeValue": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "CodingSchemeDesignator": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "_vrMap": {
+                "type": "object"
+              }
+            }
+          },
+          "SoftwareVersions": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "StationName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "_vrMap": {
+            "type": "object"
+          }
+        }
+      },
+      "ConvolutionKernel": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DataCollectionDiameter": {
+        "type": "long"
+      },
+      "DeidentificationMethod": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DeidentificationMethodCodeSequence": {
+        "properties": {
+          "CodeMeaning": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CodeValue": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CodingSchemeDesignator": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "_vrMap": {
+            "type": "object"
+          }
+        }
+      },
+      "DeviceSerialNumber": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DistanceSourceToDetector": {
+        "type": "float"
+      },
+      "DistanceSourceToPatient": {
+        "type": "long"
+      },
+      "Exposure": {
+        "type": "long"
+      },
+      "ExposureTime": {
+        "type": "long"
+      },
+      "FilterType": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "FocalSpots": {
+        "type": "float"
+      },
+      "FrameOfReferenceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "GantryDetectorTilt": {
+        "type": "long"
+      },
+      "GeneratorPower": {
+        "type": "long"
+      },
+      "HighBit": {
+        "type": "long"
+      },
+      "ImageOrientationPatient": {
+        "type": "long"
+      },
+      "ImagePositionPatient": {
+        "type": "long"
+      },
+      "ImageType": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "InstanceCreationDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "InstanceCreationTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "InstanceNumber": {
+        "type": "long"
+      },
+      "IrradiationEventUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "KVP": {
+        "type": "long"
+      },
+      "LossyImageCompression": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Manufacturer": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ManufacturerModelName": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Modality": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PatientID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PatientIdentityRemoved": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PatientName": {
+        "properties": {
+          "Alphabetic": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "PatientPosition": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PerformedProcedureStepStartDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PerformedProcedureStepStartTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PhotometricInterpretation": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PixelData": {
+        "properties": {
+          "BulkDataURI": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "PixelPaddingValue": {
+        "type": "long"
+      },
+      "PixelRepresentation": {
+        "type": "long"
+      },
+      "PixelSpacing": {
+        "type": "float"
+      },
+      "PositionReferenceIndicator": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ReconstructionDiameter": {
+        "type": "long"
+      },
+      "ReferencedImageSequence": {
+        "properties": {
+          "ReferencedSOPClassUID": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ReferencedSOPInstanceUID": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "_vrMap": {
+            "type": "object"
+          }
+        }
+      },
+      "RescaleIntercept": {
+        "type": "long"
+      },
+      "RescaleSlope": {
+        "type": "long"
+      },
+      "RescaleType": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "RevolutionTime": {
+        "type": "float"
+      },
+      "RotationDirection": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Rows": {
+        "type": "long"
+      },
+      "SOPClassUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SOPInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SamplesPerPixel": {
+        "type": "long"
+      },
+      "ScanOptions": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SeriesDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SeriesInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SeriesNumber": {
+        "type": "long"
+      },
+      "SeriesTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SingleCollimationWidth": {
+        "type": "float"
+      },
+      "SliceLocation": {
+        "type": "long"
+      },
+      "SliceThickness": {
+        "type": "float"
+      },
+      "SoftwareVersions": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SpacingBetweenSlices": {
+        "type": "long"
+      },
+      "SpiralPitchFactor": {
+        "type": "float"
+      },
+      "StudyDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "StudyInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "StudyTime": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TableFeedPerRotation": {
+        "type": "float"
+      },
+      "TableHeight": {
+        "type": "float"
+      },
+      "TableSpeed": {
+        "type": "long"
+      },
+      "TotalCollimationWidth": {
+        "type": "long"
+      },
+      "WindowCenter": {
+        "type": "long"
+      },
+      "WindowWidth": {
+        "type": "long"
+      },
+      "XRayTubeCurrent": {
+        "type": "long"
+      },
+      "_vrMap": {
+        "properties": {
+          "PixelData": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
