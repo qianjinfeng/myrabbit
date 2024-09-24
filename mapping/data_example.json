@@ -1,0 +1,333 @@
+[{"00100020":{"vr":"LO","Value":["716713622818558421526494572171041020891020924597"]},"00100010":{"vr":"PN","Value":[{"Alphabetic":"NAME^NONE"}]},"00081030":{"vr":"LO","Value":["WMHI"]},"00080050":{"vr":"SH","Value":["1513616818133541"]},"0020000D":{"vr":"UI","Value":["1.2.826.0.13854362241694438965858641723883466450351448"]},"00080020":{"vr":"DA","Value":["20180303"]},"00080030":{"vr":"TM","Value":["010100.000000"]},"00200010":{"vr":"SH"},"00090010":{"vr":"CS","Value":["dedupped"]},"00091011":{"vr":"CS","Value":["ae81a11316281f88b48af7d49bf48aeb4bcb07a18a8651df6592f38e113f03aa"]},"00091012":{"vr":"CS","Value":["study"]},"00080061":{"Value":["SR","MR","DOC","SEG"],"vr":"CS"},"00201208":{"Value":[82],"vr":"IS"},"00201206":{"Value":[47],"vr":"IS"}},{"00100020":{"vr":"LO","Value":["0000003"]},"00100010":{"vr":"PN","Value":[{"Alphabetic":"NAME^NONE"}]},"00081030":{"vr":"LO","Value":["PETCT"]},"00080050":{"vr":"SH","Value":["0000155811"]},"0020000D":{"vr":"UI","Value":["1.3.6.1.4.1.25403.345050719074.3824.20170125113417.1"]},"00080020":{"vr":"DA","Value":["20141212"]},"00080030":{"vr":"TM","Value":["092205.578000"]},"0032000A":{"vr":"CS","Value":["READ"]},"00200010":{"vr":"SH"},"00090010":{"vr":"CS","Value":["dedupped"]},"00091011":{"vr":"CS","Value":["7513a42d337160472cceaa49f9593bf70343cc3e5fbe976d61056a69c25d2134"]},"00091012":{"vr":"CS","Value":["study"]},"00080061":{"Value":["CT"],"vr":"CS"},"00201208":{"Value":[176],"vr":"IS"},"00201206":{"Value":[3],"vr":"IS"}},{"00100020":{"vr":"LO","Value":["832040"]},"00100010":{"vr":"PN","Value":[{"Alphabetic":"MISTER^MR"}]},"00081030":{"vr":"LO","Value":["BRAIN SELLA"]},"00080050":{"vr":"SH","Value":["0000000002"]},"0020000D":{"vr":"UI","Value":["1.2.840.113619.2.5.1762583153.215519.978957063.78"]},"00080020":{"vr":"DA","Value":["20010108"]},"00080030":{"vr":"TM","Value":["120022"]},"00200010":{"vr":"SH","Value":["5801"]},"00090010":{"vr":"CS","Value":["dedupped"]},"00091011":{"vr":"CS","Value":["888002813ae4fb581fe54eddff94d10ba0860727fc3c6086dbcaf3f5ab843fb3"]},"00091012":{"vr":"CS","Value":["study"]},"00080061":{"Value":["MR"],"vr":"CS"},"00201208":{"Value":[59],"vr":"IS"},"00201206":{"Value":[3],"vr":"IS"}},{"00100020":{"vr":"LO","Value":["Examples"]},"00100010":{"vr":"PN","Value":[{"Alphabetic":"Zoo-Exotic"}]},"00081030":{"vr":"LO"},"00080050":{"vr":"SH"},"0020000D":{"vr":"UI","Value":["1.2.276.0.74.3.1167540280.200511.112514.1"]},"00080020":{"vr":"DA","Value":["20050101"]},"00080030":{"vr":"TM","Value":["112514.000000"]},"00200010":{"vr":"SH","Value":["200511.112514.1"]},"00090010":{"vr":"CS","Value":["dedupped"]},"00091011":{"vr":"CS","Value":["a6c593be3050a49326e1404c3dd9c8dc969a90854df76f5eb33d11f6e62a1eea"]},"00091012":{"vr":"CS","Value":["study"]},"00080061":{"Value":["DX"],"vr":"CS"},"00201208":{"Value":[6],"vr":"IS"},"00201206":{"Value":[1],"vr":"IS"}}]
+{"PatientID":{"vr":"LO","Value":["716713622818558421526494572171041020891020924597"]},"PatientName":{"vr":"PN","Value":[{"Alphabetic":"NAME^NONE"}]},"StudyDescription":{"vr":"LO","Value":["WMHI"]},"AccessionNumber":{"vr":"SH","Value":["1513616818133541"]},"StudyInstanceUID":{"vr":"UI","Value":["1.2.826.0.13854362241694438965858641723883466450351448"]},"StudyDate":{"vr":"DA","Value":["20180303"]},"StudyTime":{"vr":"TM","Value":["010100.000000"]},"StudyID":{"vr":"SH"},"00090010":{"vr":"CS","Value":["dedupped"]},"00091011":{"vr":"CS","Value":["ae81a11316281f88b48af7d49bf48aeb4bcb07a18a8651df6592f38e113f03aa"]},"00091012":{"vr":"CS","Value":["study"]},"ModalitiesInStudy":{"Value":["SR","MR","DOC","SEG"],"vr":"CS"},"NumberOfStudyRelatedInstances":{"Value":[82],"vr":"IS"},"NumberOfStudyRelatedSeries":{"Value":[47],"vr":"IS"}}
+
+
+{
+    "_index": "dicoms",
+    "_id": "1.2.826.0.1.3680043.8.1055.1.20111102150758591.03296050.69180943",
+    "_score": 1,
+    "_source": {
+      "SpecificCharacterSet": "ISO_IR 100",
+      "ProtocolName": "ART.RENALES 12/Abdomen/Hx",
+      "InstanceNumber": 1,
+      "WindowWidth": [
+        350,
+        350
+      ],
+      "ReferencedPerformedProcedureStepSequence": [
+        {
+          "_vrMap": {},
+          "ReferencedSOPClassUID": "1.2.840.10008.3.1.2.3.3",
+          "ReferencedSOPInstanceUID": "1.2.840.113704.1.111.5104.1160636572.51"
+        }
+      ],
+      "SliceLocation": -325,
+      "SeriesInstanceUID": "1.2.826.0.1.3680043.8.1055.1.20111102150758591.96842950.07877442",
+      "ImageType": [
+        "ORIGINAL",
+        "PRIMARY",
+        "AXIAL",
+        "HELIX"
+      ],
+      "SeriesDescription": "ARTERIELLE",
+      "BitsAllocated": 16,
+      "ImageOrientationPatient": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "InstanceCreationTime": "091605.000000",
+      "ScheduledProcedureStepDescription": "CT1 abdomen",
+      "ContentDate": "20061012",
+      "PerformedProcedureStepDescription": "CT1 abdomen",
+      "SpacingBetweenSlices": 0.5,
+      "RequestAttributesSequence": [
+        {
+          "_vrMap": {},
+          "ScheduledProcedureStepDescription": "CT1 abdomen",
+          "ScheduledProtocolCodeSequence": [
+            {
+              "_vrMap": {},
+              "CodeMeaning": "CT1 abdomen",
+              "CodeValue": "CTABDOM",
+              "CodingSchemeDesignator": "XPLORE"
+            }
+          ],
+          "RequestedProcedureID": "A10026177757",
+          "ScheduledProcedureStepID": "A10026177758"
+        }
+      ],
+      "ScheduledProcedureStepID": "A10026177758",
+      "SOPInstanceUID": "1.2.826.0.1.3680043.8.1055.1.20111102150758591.03296050.69180943",
+      "SOPClassUID": "1.2.840.10008.5.1.4.1.1.2",
+      "PatientPosition": "FFS",
+      "RotationDirection": "CW",
+      "HighBit": 11,
+      "PixelData": {
+        "BulkDataURI": "binary_uri"
+      },
+      "ProcedureCodeSequence": [
+        {
+          "_vrMap": {},
+          "CodeMeaning": "CT1 abdomen",
+          "CodeValue": "CTABDOM",
+          "CodingSchemeDesignator": "XPLORE"
+        }
+      ],
+      "StudyDate": "20061012",
+      "ReconstructionDiameter": 302,
+      "Exposure": 300,
+      "PatientName": "Anonymized",
+      "AcquisitionTime": "085229.000000",
+      "InstanceCreationDate": "20061012",
+      "PatientAge": "000Y",
+      "ContrastBolusAgent": "CONTRAST",
+      "FilterType": "B",
+      "WindowCenter": [
+        50,
+        50
+      ],
+      "RescaleSlope": 1,
+      "PatientID": "0",
+      "ScanOptions": "HELIX",
+      "FrameOfReferenceUID": "1.2.840.113704.1.111.3704.1160637109.3",
+      "Modality": "CT",
+      "KVP": 120,
+      "SamplesPerPixel": 1,
+      "GantryDetectorTilt": 0,
+      "BitsStored": 12,
+      "StudyDescription": "CT1 abdomen",
+      "StudyInstanceUID": "1.2.826.0.1.3680043.8.1055.1.20111102150758591.92402465.76095170",
+      "PixelRepresentation": 0,
+      "DataCollectionDiameter": 302,
+      "LossyImageCompression": "01",
+      "PhotometricInterpretation": "MONOCHROME2",
+      "AcquisitionDate": "20061012",
+      "RequestedProcedureID": "A10026177757",
+      "SeriesNumber": 6168,
+      "XRayTubeCurrent": 400,
+      "Rows": 512,
+      "LossyImageCompressionRatio": 5.88268,
+      "ImageComments": "JPEG 2000 lossless - Version 4.0.2 (c) Image Devices GmbH",
+      "Columns": 512,
+      "RescaleIntercept": -1000,
+      "ImagePositionPatient": [
+        -151.493508,
+        -36.6564417,
+        1295
+      ],
+      "StudyTime": "090258.000000",
+      "ContentTime": "085229.719000",
+      "ConvolutionKernel": "B",
+      "@timestamp": "2006-10-12T08:52:29.000Z",
+      "ScheduledProtocolCodeSequence": [
+        {
+          "_vrMap": {},
+          "CodeMeaning": "CT1 abdomen",
+          "CodeValue": "CTABDOM",
+          "CodingSchemeDesignator": "XPLORE"
+        }
+      ],
+      "TableHeight": 151,
+      "SliceThickness": 1,
+      "PerformedProtocolCodeSequence": [
+        {
+          "_vrMap": {},
+          "CodeMeaning": "CT1 abdomen",
+          "CodeValue": "CTABDOM",
+          "CodingSchemeDesignator": "XPLORE"
+        }
+      ],
+      "PixelSpacing": [
+        0.58984375,
+        0.58984375
+      ]
+    }
+  }
+
+
+  {
+    "_index": "dicoms",
+    "_id": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2595.0",
+    "_score": 1,
+    "_source": {
+      "00450010": "GEMS_HELIOS_01",
+      "InstanceNumber": 2,
+      "WindowWidth": 1000,
+      "IrradiationEventUID": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2596.0",
+      "SliceLocation": 150,
+      "SeriesInstanceUID": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2593.0",
+      "ImageType": [
+        "ORIGINAL",
+        "PRIMARY",
+        "LOCALIZER"
+      ],
+      "BitsAllocated": 16,
+      "ImageOrientationPatient": [
+        0,
+        -1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "InstanceCreationTime": "010508.000",
+      "ExposureTime": 2078,
+      "ContentDate": "20100806",
+      "Manufacturer": "GE MEDICAL SYSTEMS",
+      "SpacingBetweenSlices": -10,
+      "00430010": "GEMS_PARM_01",
+      "SOPInstanceUID": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2595.0",
+      "SOPClassUID": "1.2.840.10008.5.1.4.1.1.2",
+      "PatientPosition": "HFS",
+      "SoftwareVersions": "cj_kl.89",
+      "RotationDirection": "CW",
+      "HighBit": 15,
+      "PixelData": {
+        "BulkDataURI": "binary_uri"
+      },
+      "00431027": null,
+      "StudyDate": "20100806",
+      "ReconstructionDiameter": null,
+      "AcquisitionNumber": 2,
+      "Exposure": 20,
+      "PatientName": "NAME^NONE",
+      "AcquisitionTime": "010505.988",
+      "DeidentificationMethodCodeSequence": [
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Basic Application Confidentiality Profile",
+          "CodeValue": "113100",
+          "CodingSchemeDesignator": "DCM"
+        },
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Remove all descriptors",
+          "CodeValue": "210004",
+          "CodingSchemeDesignator": "99PMP"
+        },
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Retain Longitudinal Temporal Information Modified Dates Option",
+          "CodeValue": "113107",
+          "CodingSchemeDesignator": "DCM"
+        },
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Retain all structured content unchanged",
+          "CodeValue": "210011",
+          "CodingSchemeDesignator": "99PMP"
+        },
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Retain Safe Private Option",
+          "CodeValue": "113111",
+          "CodingSchemeDesignator": "DCM"
+        },
+        {
+          "_vrMap": {},
+          "CodeMeaning": "Remap UIDs",
+          "CodeValue": "210001",
+          "CodingSchemeDesignator": "99PMP"
+        }
+      ],
+      "InstanceCreationDate": "20100806",
+      "ContributingEquipmentSequence": [
+        {
+          "_vrMap": {},
+          "StationName": "STUDIO5_11112",
+          "SoftwareVersions": "Sat Dec  5 13:17:48 EST 2020",
+          "ManufacturerModelName": "DicomCleaner",
+          "PurposeOfReferenceCodeSequence": [
+            {
+              "_vrMap": {},
+              "CodeMeaning": "De-identifying Equipment",
+              "CodeValue": "109104",
+              "CodingSchemeDesignator": "DCM"
+            }
+          ],
+          "Manufacturer": "PixelMed",
+          "ContributionDescription": "Cleaned",
+          "ContributionDateTime": "20210325104829.686+0000"
+        }
+      ],
+      "FilterType": "BODY FILTER",
+      "SingleCollimationWidth": 0.625,
+      "StudyID": null,
+      "WindowCenter": -70,
+      "RescaleSlope": 1,
+      "PatientSex": null,
+      "SeriesDate": "20100806",
+      "PatientID": "NOID",
+      "ScanOptions": "SCOUT MODE",
+      "FrameOfReferenceUID": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2594.0",
+      "AccessionNumber": null,
+      "DistanceSourceToPatient": 541,
+      "PerformedProcedureStepStartDate": "20100806",
+      "Modality": "CT",
+      "TotalCollimationWidth": 5,
+      "00451001": 8,
+      "PatientBirthDate": null,
+      "TableSpeed": 100,
+      "00451002": 0.625,
+      "KVP": 120,
+      "SamplesPerPixel": 1,
+      "PerformedProcedureStepStartTime": "010434.000",
+      "GantryDetectorTilt": 0,
+      "BitsStored": 16,
+      "StudyInstanceUID": "1.3.6.1.4.1.5962.99.1.1761388472.1291962045.1616669124536.2592.0",
+      "PixelRepresentation": 1,
+      "DeviceSerialNumber": "SN000000",
+      "PatientIdentityRemoved": "YES",
+      "DataCollectionDiameter": 500,
+      "FocalSpots": 1.2,
+      "LossyImageCompression": "00",
+      "PhotometricInterpretation": "MONOCHROME2",
+      "AcquisitionDate": "20100806",
+      "DistanceSourceToDetector": 949.147,
+      "SeriesNumber": 1,
+      "SeriesTime": "010434.000",
+      "XRayTubeCurrent": 10,
+      "Rows": 367,
+      "ManufacturerModelName": "Revolution EVO",
+      "Columns": 835,
+      "RescaleIntercept": -1024,
+      "DeidentificationMethod": [
+        "Deidentified",
+        "Descriptors removed",
+        "Patient Characteristics removed",
+        "Device identity removed",
+        "Institution identity removed",
+        "Dates modified",
+        "Structured content retained",
+        "Unsafe private removed",
+        "UIDs remapped"
+      ],
+      "ImagePositionPatient": [
+        0,
+        265,
+        150
+      ],
+      "PositionReferenceIndicator": "OM",
+      "StudyTime": "010434.000",
+      "ContentTime": "010508.000",
+      "ConvolutionKernel": "STANDARD",
+      "00191024": 0,
+      "ReferringPhysicianName": null,
+      "00191023": 0,
+      "@timestamp": "2010-08-06T01:05:05.988Z",
+      "GeneratorPower": 1200,
+      "TableHeight": 169.5,
+      "00191027": 0,
+      "SliceThickness": 200.818176,
+      "PixelSpacing": [
+        0.545455,
+        0.634731
+      ],
+      "00190010": "GEMS_ACQU_01",
+      "RescaleType": "HU"
+    }
+}

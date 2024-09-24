@@ -1,0 +1,58 @@
+{
+  "mappings": {
+    "properties": {
+      "AccessionNumber": {
+        "type": "text"
+      },
+      "StudyDescription": {
+        "type": "text"
+      },
+      "ReferringPhysicianName": {
+        "properties": {
+          "Alphabetic": {
+            "type": "text"
+          }
+        }
+      },
+      "ProcedureCodeSequence": {
+        "properties": {
+          "CodeValue": {
+            "type": "text"
+          }
+        }
+      },
+      "StudyDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "StudyInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "StudyTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "PatientAge": {
+        "type": "text"
+      },
+      "PatientSize": {
+        "type": "float"
+      },
+      "PatientWeight": {
+        "type": "float"
+      },
+      "ReasonForVisit": {
+        "type": "text"
+      },
+      "AdmissionID": {
+        "type": "text"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "mappings": {
+    "properties": {
+      "PatientBirthDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "PatientBirthTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "PatientName": {
+        "properties": {
+          "Alphabetic": {
+            "type": "text"
+          }
+        }
+      },
+      "PatientID": {
+        "type": "text"
+      },
+      "PatientSex": {
+        "type": "text"
+      }
+    }
+  }
+}

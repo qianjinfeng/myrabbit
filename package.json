@@ -14,6 +14,7 @@
     "@elastic/elasticsearch": "^8.15.0",
     "amqplib": "^0.10.4",
     "loglevelnext": "^6.0.0",
-    "pako": "^2.1.0"
+    "pako": "^2.1.0",
+    "pinata-web3": "^0.4.1"
   }
 }

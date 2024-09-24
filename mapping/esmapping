@@ -94,7 +94,13 @@
         "format": "basic_date"
       },
       "SeriesInstanceUID": {
-        "type": "text"
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
       },  
       "SeriesNumber": {
         "type": "long"
@@ -108,7 +114,13 @@
         "format": "basic_date"
       },
       "StudyInstanceUID": {
-        "type": "text"
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
       },
       "StudyTime": {
         "type": "date",

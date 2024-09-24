@@ -1,0 +1,67 @@
+{
+  "mappings": {
+    "properties": {
+      "PerformingPhysicianName": {
+        "properties": {
+          "Alphabetic": {
+            "type": "text"
+          }
+        }
+      },
+      "PerformedProcedureStepStartDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "PerformedProcedureStepStartTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"                                                                                                                                                                                                                                                                                                                               
+      },
+      "PerformedProcedureStepEndDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "PerformedProcedureStepEndTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"                                                                                                                                                                                                                                                                                                                               
+      },
+      "PerformedProcedureStepID": {
+        "type": "text"
+      },
+      "PerformedProcedureStepDescription": {
+        "type": "text"
+      },
+      "Modality": {
+        "type": "text"
+      },
+      "ProtocolName": {
+        "type": "text"
+      },
+      "BodyPartExamined": {
+        "type": "text"
+      },
+      "SeriesDescription": {
+        "type": "text"
+      },
+      "SeriesDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "SeriesInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },  
+      "SeriesNumber": {
+        "type": "long"
+      },
+      "SeriesTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"                                                                                                                                                                                                                                                                                                                               
+      }
+    }
+  }
+}

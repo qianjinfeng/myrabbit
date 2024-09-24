@@ -1,0 +1,88 @@
+{
+  "mappings": {
+    "properties": {
+
+      "Manufacturer": {
+        "type": "text"
+      },
+      "InstitutionName": {
+        "type": "text"
+      },
+      "DeviceSerialNumber": {
+        "type": "text"
+      },
+      "StationName": {
+        "type": "text"
+      },
+      "SoftwareVersions": {
+        "type": "text"
+      },
+
+
+
+      "AcquisitionDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "AcquisitionNumber": {
+        "type": "long"
+      },
+      "AcquisitionTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+
+
+
+      "ImageType": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ContentDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "ContentTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "InstanceNumber": {
+        "type": "long"
+      },
+
+
+
+      "InstanceCreationDate": {
+        "type": "date",
+        "format": "basic_date"
+      },
+      "InstanceCreationTime": {
+        "type": "date",
+        "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS"
+      },
+      "SOPClassUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },  
+      "SOPInstanceUID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}
