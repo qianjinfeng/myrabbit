@@ -156,9 +156,17 @@ class DicomMetaDictionary {
 
                     naturalDataset[naturalName] = naturalValues;
                 }
-                // else if (data.vr === "PN") {
-                //     naturalDataset[naturalName] = data.Value[0].Alphabetic
-                // } 
+                else if (data.vr === "FD" || data.vr === "FL" ) {
+                    data.Value = data.Value.map(num => num.toFixed(6));
+                    naturalDataset[naturalName] = data.Value;
+                } 
+                else if (data.vr === "DS") {
+                    data.Value = data.Value.map(num => num.toFixed(3));
+                    naturalDataset[naturalName] = data.Value;
+                }
+                else if (data.vr === "IS") {
+                    naturalDataset[naturalName] = data.Value;
+                }
                 else {
                     naturalDataset[naturalName] = data.Value;
                 }

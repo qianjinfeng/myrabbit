@@ -6,6 +6,9 @@ import { log } from "./src/log.js";
 import { Client } from '@elastic/elasticsearch';
 import { PinataSDK } from "pinata-web3";
 import { readFile } from 'node:fs/promises';
+import { study_tags } from './standard/tags_study_for_doc.js';
+import { series_tags } from './standard/tags_series_for_doc.js';
+import { instance_tags } from './standard/tags_instance_for_doc.js';
 
 
 const pinata = new PinataSDK({
@@ -27,13 +30,37 @@ const client = new Client({
     } 
   });
 
+async function checkDocumentExists(indexName, docId) {
+    try {
+        const response = await client.get({
+            index: indexName,
+            id: docId
+        });
+
+        if (response.hasOwnProperty('found')) {
+            return response.found;
+        } else if (response.hasOwnProperty('status') && response.status === 404) {
+            return false;
+        } else {
+            return true;
+        }
+    } catch (error) {
+        if (error.meta.statusCode === 404 || error.meta.body.status === 404) {
+            return false;
+        } else {
+            console.error('Error:', error);
+            throw error; // 重新抛出其他类型的错误
+        }
+    }
+}
+
 async function indexDocument(index, documentId, body) {  
     try {  
         const response = await client.index({  
             index,  
             id: documentId,  
             body,
-            pipeline,  
+              
         });  
         console.log(response.result); // 'created' 或 'updated'  
     } catch (error) {  
@@ -73,25 +100,70 @@ async function consumeMessages() {
                 console.log(" [x] Received %s", msg.content.toString());  
                 // 注意：在真实应用中，你可能需要手动发送确认信号  
                 const adataset = JSON.parse(msg.content.toString());
-                const natural0 = DicomMetaDictionary.naturalizeDataset(adataset);
-                console.log(natural0.SOPInstanceUID);
+
+                // 创建一个新对象来存储要抽取的keys和它们的值  
+                const extracted_study = {};  
+                // 遍历需要抽取的keys  
+                study_tags.forEach(key => {  
+                    if (adataset.hasOwnProperty(key)) {  
+                        // 将key和对应的值添加到新对象中  
+                        extracted_study[key] = adataset[key];  
+                        delete adataset[key];
+                    }  
+                });
+                const study_set = DicomMetaDictionary.naturalizeDataset(extracted_study);
+                console.log(JSON.stringify(study_set));
+                const exists = await checkDocumentExists('studies', study_set.StudyInstanceUID);
+                if (!exists) {
+                    indexDocument('studies', study_set.StudyInstanceUID, study_set)
+                }
                 
 
+                const extracted_series = {};  
+                series_tags.forEach(key => {  
+                    if (key in adataset) {  
+                        // 将key和对应的值添加到新对象中  
+                        extracted_series[key] = adataset[key];  
+                        delete adataset[key];
+                    }  
+                });
+                
+                const series_set = DicomMetaDictionary.naturalizeDataset(extracted_series);
+                series_set.StudyInstanceUID = study_set.StudyInstanceUID;
+                console.log(JSON.stringify(series_set));
+                const sexists = await checkDocumentExists('series', series_set.SeriesInstanceUID);
+                if (!sexists) {
+                    indexDocument('series', series_set.SeriesInstanceUID, series_set)
+                }
+                
+
+                // const extracted_instance = {};  
+                // instance_tags.forEach(key => {  
+                //     if (key in adataset) {  
+                //         // 将key和对应的值添加到新对象中  
+                //         extracted_instance[key] = adataset[key];  
+                //         delete adataset[key];
+                //     }  
+                // });  
+                const instance_set = DicomMetaDictionary.naturalizeDataset(adataset);
+                console.log(JSON.stringify(instance_set));             
+
                 try {
-                    const filePath = new URL('/tmp/'+natural0.SOPInstanceUID, import.meta.url);
+                    const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
                     const contents = await readFile(filePath, { encoding: 'utf8' });
-                    console.log(contents);
+                    //console.log(contents);
 
                     const uploadCID = await pinata.upload.json(contents)
-                    natural0.PixelData.BulkDataURI = uploadCID.IpfsHash;
+                    instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
 
                   } catch (err) {
                     console.error(err.message);
                 }
+                instance_set.SeriesInstanceUID = series_set.SeriesInstanceUID;
+                console.log(JSON.stringify(instance_set));
 
-                console.log(JSON.stringify(natural0));
+                indexDocument('instances', instance_set.SOPInstanceUID, instance_set)
 
-                //indexDocument('dicoms', natural0.SOPInstanceUID, natural0)
             }  
         }, {  
             noAck: true // 自动确认消息  
