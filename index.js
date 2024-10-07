@@ -8,7 +8,7 @@ import { PinataSDK } from "pinata-web3";
 import { readFile } from 'node:fs/promises';
 import { study_tags } from './standard/tags_study_for_doc.js';
 import { series_tags } from './standard/tags_series_for_doc.js';
-import { instance_tags } from './standard/tags_instance_for_doc.js';
+import { siemens_tags } from './standard/tags_siemens.js';
 
 
 const pinata = new PinataSDK({
@@ -54,17 +54,22 @@ async function checkDocumentExists(indexName, docId) {
     }
 }
 
-async function indexDocument(index, documentId, body) {  
+async function indexDocument(index, documentId, body, pipeline=null) {  
     try {  
         const response = await client.index({  
             index,  
             id: documentId,  
             body,
-              
+            // 只有当 pipeline 不是 null 或 undefined 时才包含它  
+            ...(pipeline ? { pipeline } : {}), 
         });  
-        console.log(response.result); // 'created' 或 'updated'  
+        console.log(`Indexed document with ID ${documentId}: ${response.result}`); // 'created' 或 'updated'    
     } catch (error) {  
         console.error('Error indexing document', error);  
+        if (error.meta && error.meta.body && error.meta.body.error) {
+            console.error(`Detailed error: ${JSON.stringify(error.meta.body.error)}`);
+        }
+        throw error; // 重新抛出错误以便上层处理
     }  
 }
 
@@ -78,6 +83,112 @@ async function uploadFile(jsonBody) {
       console.log(error);
     }
   }
+
+// 定义一个函数来递归地删除_vrMap属性  
+function removeVrMap(obj) {  
+    if (obj && typeof obj === 'object') {  
+        // 使用for...in循环来遍历对象的所有属性  
+        for (let key in obj) {  
+            if (obj.hasOwnProperty(key)) {  
+                if (key === '_vrMap') {  
+                    // 如果键名是_vrMap，则删除该属性  
+                    delete obj[key];  
+                } else if (typeof obj[key] === 'object') {  
+                    // 如果属性值是一个对象（或数组，因为数组在JavaScript中也是对象），则递归调用  
+                    removeVrMap(obj[key]);  
+                }  
+            }  
+        }  
+    }  
+}  
+
+async function processDicomMessage(dataset) {
+    // 创建一个新对象来存储要抽取的keys和它们的值  
+    const extracted_study = {};  
+    // 遍历需要抽取的keys  
+    study_tags.forEach(key => {  
+        if (dataset.hasOwnProperty(key)) {  
+            // 将key和对应的值添加到新对象中  
+            extracted_study[key] = dataset[key];  
+            delete dataset[key];
+        }  
+    });
+    const study_set = DicomMetaDictionary.naturalizeDataset(extracted_study);
+    // console.log(JSON.stringify(study_set));
+    const exists = await checkDocumentExists('studies', study_set.StudyInstanceUID);
+    if (!exists) {
+        removeVrMap(study_set)
+        await indexDocument('studies', study_set.StudyInstanceUID, study_set, 'timestamp-study')
+    }
+    
+
+    const extracted_series = {};  
+    series_tags.forEach(key => {  
+        if (key in dataset) {  
+            // 将key和对应的值添加到新对象中  
+            extracted_series[key] = dataset[key];  
+            delete dataset[key];
+        }  
+    });
+    
+    const series_set = DicomMetaDictionary.naturalizeDataset(extracted_series);
+    series_set.StudyInstanceUID = study_set.StudyInstanceUID;
+    // console.log(JSON.stringify(series_set));
+    const sexists = await checkDocumentExists('series', series_set.SeriesInstanceUID);
+    if (!sexists) {
+        removeVrMap(series_set)
+        await indexDocument('series', series_set.SeriesInstanceUID, series_set, 'timestamp-series')
+    }
+
+
+    const extracted_siemens = {};  
+    siemens_tags.forEach(prefix => {  
+        // 遍历dataset中的所有键
+        for (let key in dataset) {  
+            // 如果键以当前前缀开始 
+            if (key.startsWith(prefix)) {
+                extracted_siemens[key] = dataset[key];  
+                delete dataset[key];
+            }
+        }  
+    });
+
+    const instance_set = DicomMetaDictionary.naturalizeDataset(dataset);
+    // console.log(JSON.stringify(instance_set));      
+    removeVrMap(instance_set)
+    console.log("SOPInstanceUID " + instance_set.SOPInstanceUID);   
+
+    const isObjectEmpty = (obj) => Object.keys(obj).length === 0;  
+    if (!isObjectEmpty(extracted_siemens)) {
+        const siemens_set = DicomMetaDictionary.naturalizeDataset(extracted_siemens);
+        siemens_set.SOPInstanceUID= instance_set.SOPInstanceUID    
+        const siexists = await checkDocumentExists('siemens', siemens_set.SOPInstanceUID);
+        if (!siexists) {
+            removeVrMap(siemens_set)
+            await indexDocument('siemens', siemens_set.SOPInstanceUID, siemens_set)
+        }
+    }
+
+    // try {
+    //     const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
+    //     const contents = await readFile(filePath, { encoding: 'utf8' });
+    //     //console.log(contents);
+
+    //     const uploadCID = await pinata.upload.json(contents)
+    //     instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
+
+    //   } catch (err) {
+    //     console.error(err.message);
+    // }
+    instance_set.SeriesInstanceUID = series_set.SeriesInstanceUID;
+    console.log(JSON.stringify(instance_set));
+    try {
+        await indexDocument('instances', instance_set.SOPInstanceUID, instance_set, 'timestamp-instance')
+    } catch (error) {
+        console.error(`Error indexing instance document with SOPInstanceUID ${instance_set.SOPInstanceUID}:`, error);
+        throw error;
+    }
+}
 
 // 异步函数来处理连接和接收消息  
 async function consumeMessages() {  
@@ -96,77 +207,28 @@ async function consumeMessages() {
   
         // 订阅队列并接收消息  
         channel.consume('dicom_queue', async (msg) => {  
-            if (msg !== null) {  
-                console.log(" [x] Received %s", msg.content.toString());  
-                // 注意：在真实应用中，你可能需要手动发送确认信号  
-                const adataset = JSON.parse(msg.content.toString());
-
-                // 创建一个新对象来存储要抽取的keys和它们的值  
-                const extracted_study = {};  
-                // 遍历需要抽取的keys  
-                study_tags.forEach(key => {  
-                    if (adataset.hasOwnProperty(key)) {  
-                        // 将key和对应的值添加到新对象中  
-                        extracted_study[key] = adataset[key];  
-                        delete adataset[key];
-                    }  
-                });
-                const study_set = DicomMetaDictionary.naturalizeDataset(extracted_study);
-                console.log(JSON.stringify(study_set));
-                const exists = await checkDocumentExists('studies', study_set.StudyInstanceUID);
-                if (!exists) {
-                    indexDocument('studies', study_set.StudyInstanceUID, study_set)
-                }
-                
-
-                const extracted_series = {};  
-                series_tags.forEach(key => {  
-                    if (key in adataset) {  
-                        // 将key和对应的值添加到新对象中  
-                        extracted_series[key] = adataset[key];  
-                        delete adataset[key];
-                    }  
-                });
-                
-                const series_set = DicomMetaDictionary.naturalizeDataset(extracted_series);
-                series_set.StudyInstanceUID = study_set.StudyInstanceUID;
-                console.log(JSON.stringify(series_set));
-                const sexists = await checkDocumentExists('series', series_set.SeriesInstanceUID);
-                if (!sexists) {
-                    indexDocument('series', series_set.SeriesInstanceUID, series_set)
-                }
-                
-
-                // const extracted_instance = {};  
-                // instance_tags.forEach(key => {  
-                //     if (key in adataset) {  
-                //         // 将key和对应的值添加到新对象中  
-                //         extracted_instance[key] = adataset[key];  
-                //         delete adataset[key];
-                //     }  
-                // });  
-                const instance_set = DicomMetaDictionary.naturalizeDataset(adataset);
-                console.log(JSON.stringify(instance_set));             
-
-                try {
-                    const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
-                    const contents = await readFile(filePath, { encoding: 'utf8' });
-                    //console.log(contents);
-
-                    const uploadCID = await pinata.upload.json(contents)
-                    instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
-
-                  } catch (err) {
-                    console.error(err.message);
-                }
-                instance_set.SeriesInstanceUID = series_set.SeriesInstanceUID;
-                console.log(JSON.stringify(instance_set));
-
-                indexDocument('instances', instance_set.SOPInstanceUID, instance_set)
-
-            }  
+            try {
+                if (msg !== null) {  
+                    // console.log(" [x] Received %s", msg.content.toString());  
+                    // 注意：在真实应用中，你可能需要手动发送确认信号  
+                    await processDicomMessage(JSON.parse(msg.content.toString()));
+    
+                    channel.ack(msg);
+                }  
+            } catch (error) {
+                // 如果处理消息时发生错误，你可以选择：  
+                // 1. 重新抛出错误（如果启用了消息的重试机制，RabbitMQ 可能会重新发送消息）  
+                // 2. 调用 channel.nack(msg, false, true) 来拒绝消息并将其重新排队（如果需要的话）  
+                // 3. 调用 channel.nack(msg, false, false) 或 channel.reject(msg, false) 来拒绝消息并将其丢弃到死信队列（如果配置了）  
+                // 4. 记录错误并忽略（不推荐，因为可能会导致消息丢失）  
+                channel.nack(msg, false, true);
+                console.error('Error processing DICOM message:', error); 
+                // 这里我们假设我们想要重新抛出错误以触发可能的重试机制  
+                throw error; 
+            }
+            
         }, {  
-            noAck: true // 自动确认消息  
+            noAck: false // 确认消息  
         });  
     } catch (error) {  
         console.error('Error connecting to RabbitMQ:', error);  
