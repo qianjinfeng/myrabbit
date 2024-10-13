@@ -1,5 +1,6 @@
 import addAccessors  from "./addAccessors.js";
 import dictionary   from "./dictionary.js";
+import { log } from "./log.js";
 
 import { ValueRepresentation } from "./ValueRepresentation.js";
 

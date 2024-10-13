@@ -6,9 +6,12 @@ import { log } from "./src/log.js";
 import { Client } from '@elastic/elasticsearch';
 import { PinataSDK } from "pinata-web3";
 import { readFile } from 'node:fs/promises';
-import { study_tags } from './standard/tags_study_for_doc.js';
-import { series_tags } from './standard/tags_series_for_doc.js';
+// import { study_tags } from './standard/tags_study_for_doc.js';
+// import { series_tags } from './standard/tags_series_for_doc.js';
 import { siemens_tags } from './standard/tags_siemens.js';
+import study_schema from './standard/studies_output_schema.json' assert { type: 'json' }
+import series_schema from './standard/series_output_schema.json' assert { type: 'json' }
+
 
 
 const pinata = new PinataSDK({
@@ -103,44 +106,69 @@ function removeVrMap(obj) {
 }  
 
 async function processDicomMessage(dataset) {
-    // 创建一个新对象来存储要抽取的keys和它们的值  
+    // 创建一个新对象来存储要抽取的Studies keys和它们的值  
     const extracted_study = {};  
     // 遍历需要抽取的keys  
-    study_tags.forEach(key => {  
-        if (dataset.hasOwnProperty(key)) {  
-            // 将key和对应的值添加到新对象中  
-            extracted_study[key] = dataset[key];  
-            delete dataset[key];
-        }  
-    });
+    for (let key in study_schema.items.properties) {
+        if (dataset.hasOwnProperty(key)) {
+            extracted_study[key] = dataset[key];
+        } else {
+          // 如果属性不存在，根据Schema生成默认值
+          const propertySchema = study_schema.items.properties[key];
+          if (propertySchema.type === 'object') {
+            extracted_study[key] = {};
+            for (let subKey in propertySchema.properties) {
+              if (subKey === 'vr') {
+                // 使用Schema中定义的固定值
+                extracted_study[key][subKey] = propertySchema.properties[subKey].const;
+              } else if (subKey === 'Value') {
+                extracted_study[key][subKey] = [];
+              }
+            }
+          }
+        }
+      }
+
     const study_set = DicomMetaDictionary.naturalizeDataset(extracted_study);
-    // console.log(JSON.stringify(study_set));
+    console.log(JSON.stringify(study_set));
     const exists = await checkDocumentExists('studies', study_set.StudyInstanceUID);
     if (!exists) {
         removeVrMap(study_set)
         await indexDocument('studies', study_set.StudyInstanceUID, study_set, 'timestamp-study')
     }
     
-
+    // 创建一个新对象来存储要抽取的Series keys和它们的值  
     const extracted_series = {};  
-    series_tags.forEach(key => {  
-        if (key in dataset) {  
-            // 将key和对应的值添加到新对象中  
-            extracted_series[key] = dataset[key];  
-            delete dataset[key];
-        }  
-    });
+    for (let key in series_schema.items.properties) {
+        if (dataset.hasOwnProperty(key)) {
+            extracted_series[key] = dataset[key];
+        } else {
+          // 如果属性不存在，根据Schema生成默认值
+          const propertySchema = series_schema.items.properties[key];
+          if (propertySchema.type === 'object') {
+            extracted_series[key] = {};
+            for (let subKey in propertySchema.properties) {
+              if (subKey === 'vr') {
+                // 使用Schema中定义的固定值
+                extracted_series[key][subKey] = propertySchema.properties[subKey].const;
+              } else if (subKey === 'Value') {
+                extracted_series[key][subKey] = [];
+              }
+            }
+          }
+        }
+      }
     
     const series_set = DicomMetaDictionary.naturalizeDataset(extracted_series);
     series_set.StudyInstanceUID = study_set.StudyInstanceUID;
-    // console.log(JSON.stringify(series_set));
+    console.log(JSON.stringify(series_set));
     const sexists = await checkDocumentExists('series', series_set.SeriesInstanceUID);
     if (!sexists) {
         removeVrMap(series_set)
         await indexDocument('series', series_set.SeriesInstanceUID, series_set, 'timestamp-series')
     }
 
-
+    // 创建一个新对象来存储要抽取的private keys和它们的值  
     const extracted_siemens = {};  
     siemens_tags.forEach(prefix => {  
         // 遍历dataset中的所有键
@@ -153,6 +181,7 @@ async function processDicomMessage(dataset) {
         }  
     });
 
+    //要抽取的instance keys和它们的值  
     const instance_set = DicomMetaDictionary.naturalizeDataset(dataset);
     // console.log(JSON.stringify(instance_set));      
     removeVrMap(instance_set)
@@ -181,6 +210,7 @@ async function processDicomMessage(dataset) {
     //     console.error(err.message);
     // }
     instance_set.SeriesInstanceUID = series_set.SeriesInstanceUID;
+    instance_set.StudyInstanceUID = study_set.StudyInstanceUID;
     console.log(JSON.stringify(instance_set));
     try {
         await indexDocument('instances', instance_set.SOPInstanceUID, instance_set, 'timestamp-instance')
@@ -237,6 +267,8 @@ async function consumeMessages() {
   
 // 调用函数  
 consumeMessages();
+
+
 // const dicomJSON = JSON.stringify(arrayItem);
 // console.log(dicomJSON);
 // const datasets = JSON.parse(dicomJSON);

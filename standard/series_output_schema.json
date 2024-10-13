@@ -1,0 +1,293 @@
+{
+  "$id": "series_schema",
+  "type": "array",
+  "items":
+    {
+      "type": "object",
+      "properties": {
+        "00080005": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "CS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080021": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "DA"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080054": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "AE"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080056": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "CS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080060": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "CS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "0008103E": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00081190": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "UR"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "0020000D": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "UI"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "0020000E": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "UI"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00200011": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "IS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00201209": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "IS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "integer"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00100020": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00100010": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "PN"
+            },
+            "Value": {
+              "type": "array",
+              "items":
+                {
+                  "type": "object",
+                  "properties": {
+                    "Alphabetic": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Alphabetic"
+                  ]
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00180015": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "CS"
+            },
+            "Value": {
+              "type": "array",
+              "items":
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        }
+      },
+      "required": [
+        "00080005",
+        "00080060",
+        "0008103E",
+        "0020000D",
+        "0020000E",
+        "00200011",
+        "00201209"
+      ]
+    }
+}

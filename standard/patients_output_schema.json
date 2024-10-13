@@ -1,0 +1,148 @@
+{
+    "$id": "patients_schema",
+    "type": "array",
+    "items": 
+        {
+        "type": "object",
+        "properties": {
+            "00080005": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "CS"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00081190": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "UR"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00080080": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "LO"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00100020": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "LO"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00100010": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "object",
+                    "properties": {
+                        "Alphabetic": {
+                        "type": "string"
+                        }
+                    }
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "PN"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00101030": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "DS"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            },
+            "00100040": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                "type": "array",
+                "items": 
+                    {
+                    "type": "string"
+                    }
+                },
+                "vr": {
+                "type": "string",
+                "const": "CS"
+                }
+            },
+            "required": [
+                "vr"
+            ]
+            }
+        }
+        }
+}
