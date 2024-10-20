@@ -198,19 +198,17 @@ async function processDicomMessage(dataset) {
         }
     }
 
-    // try {
-    //     const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
-    //     const contents = await readFile(filePath, { encoding: 'utf8' });
-    //     //console.log(contents);
+    try {
+        const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
+        const contents = await readFile(filePath, { encoding: 'utf8' });
+        //console.log(contents);
 
-    //     const uploadCID = await pinata.upload.json(contents)
-    //     instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
+        const uploadCID = await pinata.upload.json(contents)
+        instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
 
-    //   } catch (err) {
-    //     console.error(err.message);
-    // }
-    instance_set.SeriesInstanceUID = series_set.SeriesInstanceUID;
-    instance_set.StudyInstanceUID = study_set.StudyInstanceUID;
+      } catch (err) {
+        console.error(err.message);
+    }
     console.log(JSON.stringify(instance_set));
     try {
         await indexDocument('instances', instance_set.SOPInstanceUID, instance_set, 'timestamp-instance')
