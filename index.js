@@ -5,7 +5,6 @@ import { DicomMetaDictionary } from "./src/DicomMetaDictionary.js";
 import { log } from "./src/log.js";
 import { Client } from '@elastic/elasticsearch';
 import { PinataSDK } from "pinata-web3";
-import { readFile } from 'node:fs/promises';
 // import { study_tags } from './standard/tags_study_for_doc.js';
 // import { series_tags } from './standard/tags_series_for_doc.js';
 import { siemens_tags } from './standard/tags_siemens.js';
@@ -198,17 +197,6 @@ async function processDicomMessage(dataset) {
         }
     }
 
-    try {
-        const filePath = new URL('/tmp/'+instance_set.SOPInstanceUID, import.meta.url);
-        const contents = await readFile(filePath, { encoding: 'utf8' });
-        //console.log(contents);
-
-        const uploadCID = await pinata.upload.json(contents)
-        instance_set.PixelData.BulkDataURI = uploadCID.IpfsHash;
-
-      } catch (err) {
-        console.error(err.message);
-    }
     console.log(JSON.stringify(instance_set));
     try {
         await indexDocument('instances', instance_set.SOPInstanceUID, instance_set, 'timestamp-instance')
