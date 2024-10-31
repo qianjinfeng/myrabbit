@@ -1,0 +1,35 @@
+PUT _index_template/template_instance
+{
+  "template": {
+    "mappings": {
+      "_routing": {
+        "required": false
+      },
+      "numeric_detection": false,
+      "dynamic_date_formats": [
+        "strict_date_optional_time",
+        "yyyy/MM/dd HH:mm:ss Z||yyyy/MM/dd Z"
+      ],
+      "dynamic": true,
+      "_source": {
+        "excludes": [],
+        "includes": [],
+        "enabled": true
+      },
+      "date_detection": true,
+      "properties": {
+        "Manufacturer": {
+          "type": "keyword"
+        },
+        "SOPInstanceUID": {
+          "type": "keyword"
+        }
+      },
+      "subobjects": true
+    }
+  },
+  "index_patterns": [
+    "instance"
+  ],
+  "composed_of": []
+}

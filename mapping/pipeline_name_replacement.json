@@ -1,0 +1,14 @@
+PUT _ingest/pipeline/name-replacement
+{
+  "description": "https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_F.2.2.html\nhttps://dicom.nema.org/medical/dicom/current/output/chtml/part05/sect_6.2.html\nhttps://dicom.nema.org/dicom/2013/output/chtml/part05/sect_6.4.html",
+  "processors": [
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.PatientName = ctx.PatientName[0].Alphabetic",
+        "if": "ctx.PatientName?.size() > 0 && ctx.PatientName[0]?.Alphabetic != null",
+        "ignore_failure": true
+      }
+    }
+  ]
+}

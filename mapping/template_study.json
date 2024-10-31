@@ -1,0 +1,44 @@
+PUT _index_template/template_studies
+{
+  "template": {
+    "mappings": {
+      "_routing": {
+        "required": false
+      },
+      "numeric_detection": false,
+      "dynamic": true,
+      "_source": {
+        "excludes": [],
+        "includes": [],
+        "enabled": true
+      },
+      "dynamic_templates": [],
+      "date_detection": false,
+      "properties": {
+        "StudyID": {
+          "type": "keyword"
+        },
+        "PatientSex": {
+          "type": "keyword"
+        },
+        "PatientID": {
+          "type": "keyword"
+        },
+        "StudyDescription": {
+          "type": "text"
+        },
+        "StudyInstanceUID": {
+          "type": "keyword"
+        },
+        "AccessionNumber": {
+          "type": "keyword"
+        }
+      },
+      "subobjects": true
+    }
+  },
+  "index_patterns": [
+    "studies"
+  ],
+  "composed_of": []
+}

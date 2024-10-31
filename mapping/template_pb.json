@@ -1,0 +1,148 @@
+PUT _index_template/pb-template
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [],
+      "properties": {
+        "InstanceNumber": {
+          "type": "long"
+        },
+        "PerformedProcedureStepStartTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSXXX",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        },
+        "StudyDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "AcquisitionNumber": {
+          "type": "long"
+        },
+        "PatientName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "ignore_above": 256,
+              "type": "keyword"
+            }
+          }
+        },
+        "StudyInstanceUID": {
+          "type": "text"
+        },
+        "AcquisitionTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        },
+        "SeriesInstanceUID": {
+          "type": "text"
+        },
+        "ContributingEquipmentSequence": {
+          "type": "object",
+          "properties": {
+            "SoftwareVersions": {
+              "type": "text"
+            },
+            "StationName": {
+              "type": "text"
+            }
+          }
+        },
+        "ImageType": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "ignore_above": 256,
+              "type": "keyword"
+            }
+          }
+        },
+        "InstanceCreationDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "StudyTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        },
+        "ContentTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        },
+        "InstanceCreationTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        },
+        "AcquisitionDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "ContentDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "PatientID": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "ignore_above": 256,
+              "type": "keyword"
+            }
+          }
+        },
+        "SeriesDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "SeriesNumber": {
+          "type": "long"
+        },
+        "PerformedProcedureStepStartDate": {
+          "format": "basic_date",
+          "type": "date"
+        },
+        "Modality": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "ignore_above": 256,
+              "type": "keyword"
+            }
+          }
+        },
+        "SeriesTime": {
+          "format": "HHmmss||HHmmss.SSS||HHmmss.SSSSSS",
+          "index": true,
+          "ignore_malformed": false,
+          "store": false,
+          "type": "date",
+          "doc_values": true
+        }
+      }
+    }
+  },
+  "index_patterns": [
+    "dicoms"
+  ],
+  "composed_of": []
+}

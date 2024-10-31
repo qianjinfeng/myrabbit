@@ -1,0 +1,23 @@
+PUT _ingest/pipeline/timestamp-series
+{
+  "processors": [
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{_source.SeriesDate}}{{_source.SeriesTime}}",
+        "ignore_empty_value": true,
+        "if": "ctx?.SeriesDate != null",
+        "ignore_failure": true
+      }
+    },
+    {
+      "date": {
+        "field": "@timestamp",
+        "formats": [
+          "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+        ],
+        "ignore_failure": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+PUT _ingest/pipeline/timestamp-study
+{
+  "processors": [
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{_source.StudyDate}}{{_source.StudyTime}}",
+        "ignore_empty_value": true,
+        "if": "ctx?.StudyDate != null",
+        "ignore_failure": true
+      }
+    },
+    {
+      "date": {
+        "field": "@timestamp",
+        "formats": [
+          "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+        ],
+        "ignore_failure": true
+      }
+    }
+  ]
+}

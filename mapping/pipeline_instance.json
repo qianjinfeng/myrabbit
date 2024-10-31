@@ -1,0 +1,23 @@
+PUT _ingest/pipeline/timestamp-instance
+{
+  "processors": [
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{_source.AcquisitionDate}}{{_source.AcquisitionTime}}",
+        "ignore_empty_value": true,
+        "if": "ctx?.AcquisitionDate != null",
+        "ignore_failure": true
+      }
+    },
+    {
+      "date": {
+        "field": "@timestamp",
+        "formats": [
+          "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+        ],
+        "ignore_failure": true
+      }
+    }
+  ]
+}
