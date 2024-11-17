@@ -127,8 +127,9 @@ async function processDicomMessage(dataset) {
           }
         }
       }
-
+    
     const study_set = DicomMetaDictionary.naturalizeDataset(extracted_study);
+    study_set['title']=study_set.PatientName[0].Alphabetic;
     console.log(JSON.stringify(study_set));
     const exists = await checkDocumentExists('studies', study_set.StudyInstanceUID);
     if (!exists) {
