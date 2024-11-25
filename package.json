@@ -13,10 +13,9 @@
   "dependencies": {
     "@elastic/elasticsearch": "^8.15.0",
     "amqplib": "^0.10.4",
-    "dcmjs": "^0.34.1",
-    "loglevelnext": "^6.0.0",
+    "dotenv": "^16.4.5",
     "pako": "^2.1.0",
-    "pinata-web3": "^0.4.1"
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"

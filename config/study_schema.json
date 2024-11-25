@@ -1,5 +1,5 @@
 {
-  "$id": "series_schema",
+  "$id": "studies_schema",
   "type": "array",
   "items":
     {
@@ -24,7 +24,7 @@
             "vr"
           ]
         },
-        "00080021": {
+        "00080020": {
           "type": "object",
           "properties": {
             "vr": {
@@ -43,12 +43,31 @@
             "vr"
           ]
         },
-        "00080031": {
+        "00080030": {
           "type": "object",
           "properties": {
             "vr": {
               "type": "string",
               "const": "TM"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080050": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "SH"
             },
             "Value": {
               "type": "array",
@@ -119,18 +138,26 @@
             "vr"
           ]
         },
-        "0008103E": {
+        "00080090": {
           "type": "object",
           "properties": {
             "vr": {
               "type": "string",
-              "const": "LO"
+              "const": "PN"
             },
             "Value": {
               "type": "array",
               "items": 
                 {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "Alphabetic": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Alphabetic"
+                  ]
                 }
             }
           },
@@ -147,102 +174,7 @@
             },
             "Value": {
               "type": "array",
-              "items": 
-                {
-                  "type": "string"
-                }
-            }
-          },
-          "required": [
-            "vr"
-          ]
-        },
-        "0020000D": {
-          "type": "object",
-          "properties": {
-            "vr": {
-              "type": "string",
-              "const": "UI"
-            },
-            "Value": {
-              "type": "array",
-              "items": 
-                {
-                  "type": "string"
-                }
-            }
-          },
-          "required": [
-            "vr"
-          ]
-        },
-        "0020000E": {
-          "type": "object",
-          "properties": {
-            "vr": {
-              "type": "string",
-              "const": "UI"
-            },
-            "Value": {
-              "type": "array",
-              "items": 
-                {
-                  "type": "string"
-                }
-            }
-          },
-          "required": [
-            "vr"
-          ]
-        },
-        "00200011": {
-          "type": "object",
-          "properties": {
-            "vr": {
-              "type": "string",
-              "const": "IS"
-            },
-            "Value": {
-              "type": "array",
-              "items": 
-                {
-                  "type": "string"
-                }
-            }
-          },
-          "required": [
-            "vr"
-          ]
-        },
-        "00201209": {
-          "type": "object",
-          "properties": {
-            "vr": {
-              "type": "string",
-              "const": "IS"
-            },
-            "Value": {
-              "type": "array",
-              "items": 
-                {
-                  "type": "integer"
-                }
-            }
-          },
-          "required": [
-            "vr"
-          ]
-        },
-        "00100020": {
-          "type": "object",
-          "properties": {
-            "vr": {
-              "type": "string",
-              "const": "LO"
-            },
-            "Value": {
-              "type": "array",
-              "items": 
+              "items":
                 {
                   "type": "string"
                 }
@@ -279,7 +211,45 @@
             "vr"
           ]
         },
-        "00180015": {
+        "00100020": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00100030": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "DA"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00100040": {
           "type": "object",
           "properties": {
             "vr": {
@@ -288,7 +258,197 @@
             },
             "Value": {
               "type": "array",
-              "items":
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "0020000D": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "UI"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00200010": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "SH"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00201206": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "IS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "integer"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00201208": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "IS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "integer"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00081030": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00101030": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "DS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00101020": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "DS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00101010": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "AS"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00081080": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "string"
+                }
+            }
+          },
+          "required": [
+            "vr"
+          ]
+        },
+        "00080080": {
+          "type": "object",
+          "properties": {
+            "vr": {
+              "type": "string",
+              "const": "LO"
+            },
+            "Value": {
+              "type": "array",
+              "items": 
                 {
                   "type": "string"
                 }
@@ -300,13 +460,14 @@
         }
       },
       "required": [
-        "00080005",
-        "00080060",
-        "0008103E",
+        "00080020",
+        "00080030",
+        "00100010",
+        "00100020",
+        "00100030",
+        "00100040",
         "0020000D",
-        "0020000E",
-        "00200011",
-        "00201209"
+        "00200010"
       ]
     }
 }

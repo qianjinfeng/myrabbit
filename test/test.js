@@ -1,8 +1,8 @@
 
 
 import { Client } from '@elastic/elasticsearch';
-import { log } from "../src/log.js";
-import { DicomMetaDictionary } from "../src/DicomMetaDictionary.js";
+import { log } from "../lib/log.js";
+import { DicomMetaDictionary } from "../lib/DicomMetaDictionary.js";
 import schema from '../standard/instances_output_schema.json' assert { type: 'json' }
 import data from './aItem.json' assert { type: 'json' }
 
