@@ -31,6 +31,9 @@ export async function processDicomMessage(dataset) {
   
       const naturalizedSet = naturalizeDataset(extracted);
       log.debug(JSON.stringify(naturalizedSet));
+      if (indexName === 'study') {
+        naturalizedSet['title']=naturalizedSet.PatientName[0].Alphabetic;
+      }
   
       const exists = await checkDocumentExists(indexName, naturalizedSet[idField]);
       if (!exists) {

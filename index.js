@@ -41,7 +41,7 @@ export async function consumeMessages(channel, callback) {
 (async () => {
   try {
     // Initialize Elasticsearch indices and pipelines
-    await setupIndicesAndPipelines();
+    // await setupIndicesAndPipelines();
 
     // Connect to RabbitMQ and start consuming messages
     const channel = await connectToRabbitMQ();
