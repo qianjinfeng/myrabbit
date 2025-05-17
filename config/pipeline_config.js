@@ -16,7 +16,7 @@ const pipelinesConfig = {
                 "date": {
                   "field": "@timestamp",
                   "formats": [
-                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS||yyyyMMdd"
                   ],
                   "ignore_failure": true
                 }
@@ -39,7 +39,7 @@ const pipelinesConfig = {
                 "date": {
                   "field": "@timestamp",
                   "formats": [
-                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS||yyyyMMdd"
                   ],
                   "ignore_failure": true
                 }
@@ -62,7 +62,7 @@ const pipelinesConfig = {
                 "date": {
                   "field": "@timestamp",
                   "formats": [
-                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS"
+                    "yyyyMMddHHmmss||yyyyMMddHHmmss.SSS||yyyyMMddHHmmss.SSSSSS||yyyyMMdd"
                   ],
                   "ignore_failure": true
                 }
